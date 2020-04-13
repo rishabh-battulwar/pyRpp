@@ -41,6 +41,17 @@ install(TARGETS ${CMAKE_PROJECT_NAME}
 install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION ${INSTALL_DIR}/lib)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/test.py DESTINATION ${INSTALL_DIR}/bin)
 
+# Uninstall ################################################################
+configure_file(
+ 	"${CMAKE_CURRENT_SOURCE_DIR}/cmake_uninstall.cmake.in"
+  	"${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake"
+  	IMMEDIATE @ONLY
+)
+
+add_custom_target(uninstall
+  "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
+
+
 # Package Generator  #######################################################
 set(CPACK_PACKAGE_DESCRIPTION "pyRpp for Robust Planar Pose")
 set(CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
